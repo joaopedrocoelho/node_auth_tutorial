@@ -78,7 +78,9 @@ export const Login = async (req: Request, res: Response) => {
 
     res.cookie('refresh_token', refreshToken, {
         httpOnly: true, //only the backend will have access to the cookies, adding another layer of security
-        maxAge: 7 * 24 * 60 * 60 * 1000 //one week
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        sameSite: "none",
+        secure:true //one week
     })
 
     await getRepository(Token).save({
@@ -86,6 +88,7 @@ export const Login = async (req: Request, res: Response) => {
         token: refreshToken,
         expired_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
     })
+
 
     return res.send({
         accessToken
