@@ -163,7 +163,6 @@ export const Refresh = async (req: Request, res: Response) => {
         }
 
         const cookie = req.cookies['refresh_token'];
-        console.log('cookie', cookie);
         const payload: any = verify(cookie, process.env.REFRESH_SECRET);//TODO add types to payload
 
         if (!payload) {

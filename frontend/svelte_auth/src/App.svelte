@@ -2,13 +2,28 @@
   import Login from "./pages/Login.svelte";
   import Register from "./pages/Register.svelte";
   import Home from "./pages/Home.svelte";
-  import Router, { link } from 'svelte-spa-router';
+  import Router, { link } from "svelte-spa-router";
+  import { onMount } from "svelte";
+  import axios from "axios";
+  import { authenticated } from "./store/auth";
 
   const routes = {
     "/": Home,
     "/login": Login,
     "/register": Register,
   };
+
+  let auth = false;
+
+  $: logout = () => {
+    axios.post("logout", {}, { withCredentials: true });
+    auth = false;
+    authenticated.set(false);
+  };
+
+  authenticated.subscribe((value) => {
+    auth = value;
+  });
 
 </script>
 
@@ -22,10 +37,21 @@
       >
         <li><a href="/" use:link class="nav-link px-2 text-white">Home</a></li>
       </ul>
-      <div class="text-end">
-        <a href="/login" use:link class="btn btn-outline-light me-2">Login</a>
-        <a href="/register" use:link class="btn btn-warning">Sign-up</a>
-      </div>
+      {#if auth}
+        <div class="text-end">
+          <a
+            href="/login"
+            on:click={logout}
+            use:link
+            class="btn btn-outline-light me-2">Logout</a
+          >
+        </div>
+      {:else}
+        <div class="text-end">
+          <a href="/login" use:link class="btn btn-outline-light me-2">Login</a>
+          <a href="/register" use:link class="btn btn-warning">Sign-up</a>
+        </div>
+      {/if}
     </div>
   </div>
 </header>

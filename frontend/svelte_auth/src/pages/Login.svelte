@@ -7,7 +7,7 @@
  
 
   $: submit = async () => {
-      const { data } = await axios.post('http://localhost:8000/api/login', {
+      const { data } = await axios.post('login', {
           email,
           password,
       }, {withCredentials: true})
