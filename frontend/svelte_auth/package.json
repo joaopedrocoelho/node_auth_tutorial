@@ -23,6 +23,7 @@
   "dependencies": {
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.2",
+    "qrcode": "^1.5.1",
     "svelte-spa-router": "^3.3.0"
   }
 }

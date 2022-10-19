@@ -20,6 +20,7 @@
     "nodemon": "^2.0.19"
   },
   "dependencies": {
+    "@types/qrcode": "^1.5.0",
     "axios": "^1.1.2",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
@@ -29,7 +30,9 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "nodemailer": "^6.7.7",
+    "qrcode": "^1.5.1",
     "reflect-metadata": "^0.1.13",
+    "speakeasy": "^2.0.0",
     "typeorm": "^0.3.7"
   }
 }
